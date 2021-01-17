@@ -1,0 +1,50 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% load static %}
+  <div class="section cc-home-wrap">
+    <div class="div-block-40">
+      <div class="text-block-41">Make Blog Post</div>
+      <div class="w-form">
+        <form method="post" action="{% url 'create' %}" id="email-form-2" name="email-form-2" data-name="Email Form 2">
+			{% csrf_token %}
+			<label for="title">Post Title</label>
+			{{ form.title }}
+			<label for="body">Post Body</label>
+			{{ form.media }}
+			{{ form.body }}
+			<input type="submit" value="Post" data-wait="Please wait..." class="submit-button-8 w-button">
+		</form>
+      </div>
+    </div>
+  </div>
+  <style>
+	  #id_title {
+			width: 100%;
+			margin-right: auto;
+			margin-left: auto;
+			margin-bottom: 10px;
+			padding: 5px 5px;
+			border: 1px solid #e4e4e4;
+			border-radius: 0px;
+			-webkit-transition: border-color 400ms ease;
+			transition: border-color 400ms ease;
+			font-size: 14px;
+			line-height: 26px;
+			}
+			
+		#id_body {
+			width: 100%;
+			margin-right: auto;
+			margin-left: auto;
+			margin-bottom: 10px;
+			padding: 5px 5px;
+			border: 1px solid #e4e4e4;
+			border-radius: 0px;
+			-webkit-transition: border-color 400ms ease;
+			transition: border-color 400ms ease;
+			font-size: 14px;
+			line-height: 26px;
+			}
+  </style>
+{% endblock %}

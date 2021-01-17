@@ -1,0 +1,119 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% load static %}
+  <div class="section cc-home-wrap">
+    <div class="div-block-8">
+			<div class="w-row">
+				<div class="w-col w-col-3">
+
+					<div class="div-block-6"><img src="{{ MEDIA_URL }}users/{{ q.qn }}.jpg" loading="lazy" sizes="20vw" alt="" class="image-4"></div>
+					<div class="text-block-12">Experience: {{q.yearexp}} years</div>
+					<div class="text-block-14">Hourly rate: ${{q.cost}}</div>
+				</div>
+				<div class="w-col w-col-9">
+					<div class="div-block-7">
+						<div class="div-block-11"><a href="{{ q.linkedin }}"><img src="{% static 'images/linkedin.GIF' %}" loading="lazy" alt=""></a></div>
+						<div class="text-block-9">{{ q }}</div>
+						<div class="text-block-13">{{ q.description }}</div>
+						<div class="text-block-10">{{ q.bio }}</div>
+						<div class="text-block-11"></div>
+						<div class="text-block-15">Special topics: {{q.special1}}, {{q.special2}}, {{q.special3}}, {{q.special4}}, {{q.special5}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="div-block-9"><a href="#qa" class="button-3 w-button">Schedule &#x27;Q&amp;A&#x27;</a><a href="{% url 'contact' qid=q.qn %}" class="button-4 w-button">Message</a></div>
+	</div>
+  
+  <div id="qa" class="section-2">
+    <div class="div-block-17">
+      <div class="w-row">
+		<div class="w-col w-col-4"><a href="{% url 'profiles' getq=q.qn availstart=prevweek %}" class="button-5 w-button">Previous Week</a></div>
+		<div class="w-col w-col-4">
+			<div class="text-block-17">Schedule &#x27;Q&amp;A&#x27;</div>
+		</div>
+		<div class="w-col w-col-4"><a href="{% url 'profiles' getq=q.qn availstart=nextweek %}" class="button-6 w-button">Next Week</a></div>
+      
+	  </div>
+    </div>
+    <div class="div-block-18">
+      <div class="w-layout-grid grid-3">
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">{{ avails.first.month }}/{{ avails.first.day }}</div>
+          </div>
+		  {% for start in avails.firststarts %}
+			<div><a href="{% url 'schedule' qid=q.qn year=avails.first.year month=avails.first.month day=avails.first.day start=start.starttime end=start.endtime %}" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+		  {% endfor %}
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">{{ avails.second.month }}/{{ avails.second.day }}</div>
+          </div>
+  		  {% for start in avails.secondstarts %}
+			<div><a href="{% url 'schedule' qid=q.qn year=avails.second.year month=avails.second.month day=avails.second.day start=start.starttime end=start.endtime %}" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+		  {% endfor %}
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">{{ avails.third.month }}/{{ avails.third.day }}</div>
+          </div>
+		  {% for start in avails.thirdstarts %}
+			<div><a href="{% url 'schedule' qid=q.qn year=avails.third.year month=avails.third.month day=avails.third.day start=start.starttime end=start.endtime %}" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+		  {% endfor %}
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">{{ avails.fourth.month }}/{{ avails.fourth.day }}</div>
+          </div>
+		  {% for start in avails.fourthstarts %}
+			<div><a href="{% url 'schedule' qid=q.qn year=avails.fourth.year month=avails.fourth.month day=avails.fourth.day start=start.starttime end=start.endtime %}" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+		  {% endfor %}
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">{{ avails.fifth.month }}/{{ avails.fifth.day }}</div>
+          </div>
+		  {% for start in avails.fifthstarts %}
+			<div><a href="{% url 'schedule' qid=q.qn year=avails.fifth.year month=avails.fifth.month day=avails.fifth.day start=start.starttime end=start.endtime %}" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+		  {% endfor %}
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">{{ avails.sixth.month }}/{{ avails.sixth.day }}</div>
+          </div>
+		  {% for start in avails.sixthstarts %}
+			<div><a href="{% url 'schedule' qid=q.qn year=avails.sixth.year month=avails.sixth.month day=avails.sixth.day start=start.starttime end=start.endtime %}" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+		  {% endfor %}
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">{{ avails.seventh.month }}/{{ avails.seventh.day }}</div>
+          </div>
+		  {% for start in avails.seventhstarts %}
+			<div><a href="{% url 'schedule' qid=q.qn year=avails.seventh.year month=avails.seventh.month day=avails.seventh.day start=start.starttime end=start.endtime %}" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+		  {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+    <div>
+    <div class="div-block-38">
+      <div class="text-block-40">Blog Posts</div>
+	  	{% if blogposts %}
+			<ul role="list" class="w-list-unstyled">
+				{% for blogpost in blogposts %}
+					<li>
+					  <a href="{% url 'blogpost' bn=blogpost.bn %}" class="link-14">{{ blogpost.title }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>This Q has not made any posts yet, stay tuned!</p>
+		{% endif %}
+    </div>
+  </div>
+  
+  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=5f6617a949022b2a6c879d7a" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="{% static 'js/webflow.js' %}" type="text/javascript"></script>
+{% endblock %}

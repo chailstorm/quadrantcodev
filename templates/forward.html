@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% load static %}
+  <div class="section cc-home-wrap">
+    <div class="div-block-51">
+      <div class="text-block-61">Forward Q&amp;A Session Invite:</div>
+      {% for message in messages %}
+		<p class="paragraph">{{message}}</p>
+	  {% endfor %}
+      <div class="w-form">
+        <form method="post" action="{% url 'forward' qid=qn year=year month=month day=day start=start %}" id="email-form" name="email-form" data-name="Email Form">
+		  {% csrf_token %}
+          <div class="div-block-52">
+            <div class="text-block-60">Name:</div>
+			{{ forwardform.name }}
+          </div>
+          <div class="div-block-52">
+            <div class="text-block-60">Email:</div>
+			{{ forwardform.email }}
+          </div>
+		  <input type="submit" value="Forward" data-wait="Please wait..." class="submit-button-12 w-button">
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

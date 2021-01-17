@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% load static %}
+  <div class="section cc-home-wrap">
+    <div class="w-form">
+      <form action="{% url 'profiles' getq=qn availstart=now %}" id="email-form" name="email-form" data-name="Email Form">
+        <div class="div-block-23">
+          <div class="text-block-25">Cancelation Confirmed</div><label for="name" class="field-label-5">Would you to rebook with this Q at a different time?</label>
+		  <input type="submit" value="See Availability" data-wait="Please wait..." class="submit-button-4 w-button">
+        </div>
+      </form>
+      <div class="w-form-done">
+        <div>Thank you! Your submission has been received!</div>
+      </div>
+      <div class="w-form-fail">
+        <div>Oops! Something went wrong while submitting the form.</div>
+      </div>
+    </div>
+    <div class="text-block-23">Please note your refund may take several days to process.</div>
+  </div>
+{% endblock %}

@@ -1,0 +1,472 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% load static %}
+  <div class="section cc-home-wrap">
+    <div class="text-block-20">Register as a Q</div>
+	  <div class="div-block-53">
+		  <div class="w-form">
+			<form id="email-form" name="email-form" data-name="Email Form" method="POST" action="{% url 'qregister' regStr=regStr %}" enctype="multipart/form-data">
+			  {% csrf_token %}
+			  {{ form.errors }}
+			  <div class="div-block-55"><label for="name-2" class="field-label-11">First Name</label>
+				<div class="div-block-54">{{ form.first_name }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Last Name</label>
+				<div class="div-block-54">{{ form.last_name }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Email Address</label>
+				<div class="div-block-54">{{ form.email }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">userName</label>
+				<div class="div-block-54">{{ form.username }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Password</label>
+				<div class="div-block-54">{{ form.password1 }}</div>
+			  </div>
+			  <div class="div-block-55"></div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Confirm password</label>
+				<div class="div-block-54">{{ form.password2 }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Active</label>
+				<div class="div-block-56">{{ profileform.active }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Your Prefix</label>
+				<div class="div-block-56">{{ profileform.prefix }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Your Suffix</label>
+				<div class="div-block-56">{{ profileform.suffix }}</div>
+			  </div>
+			  <div class="text-block-63">Select which of the following areas you have experience in:</div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Service Lines</label>
+				<div class="div-block-56">{{ profileform.servicelinedev }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Capital Planning</label>
+				<div class="div-block-56">{{ profileform.capitalplan }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Pysician Recruitment</label>
+				<div class="div-block-56">{{ profileform.pysicianrecruitment }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Process Improvement</label>
+				<div class="div-block-56">{{ profileform.processimprove }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Productivity</label>
+				<div class="div-block-56">{{ profileform.productivity }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Operations Finance</label>
+				<div class="div-block-56">{{ profileform.operationsfinance }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Leading Meetings</label>
+				<div class="div-block-56">{{ profileform.leadingmeetings }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Data Analysis</label>
+				<div class="div-block-56">{{ profileform.dataanalysis }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Team Courses</label>
+				<div class="div-block-56">{{ profileform.teamcourses }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Personel Leadership</label>
+				<div class="div-block-56">{{ profileform.personalleadership }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Personality Types</label>
+				<div class="div-block-56">{{ profileform.personalitytypes }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Temporary Assignments</label>
+				<div class="div-block-56">{{ profileform.tempassignments }}</div>
+			  </div>
+				<div class="text-block-63">Enter specialties you have:</div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Specialty &#35 1</label>
+				<div class="div-block-54">{{ profileform.special1 }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Specialty &#35 2</label>
+				<div class="div-block-54">{{ profileform.special2 }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Specialty &#35 3</label>
+				<div class="div-block-54">{{ profileform.special3 }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Specialty &#35 4</label>
+				<div class="div-block-54">{{ profileform.special4 }}</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Specialty &#35 5</label>
+				<div class="div-block-54">{{ profileform.special5 }}</div>
+			  </div>
+				<div class="text-block-63">Complete your profile:</div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Description</label>
+				<div class="div-block-54">{{ profileform.description }}</div>
+			  </div>
+			  <div class="div-block-55">
+				<div class="div-block-61">
+				  <div class="div-block-59">
+					<div class="text-block-64">Bio </div>
+				  </div>
+				  <div class="div-block-60">{{ profileform.bio }}</div>
+				</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Linkedin</label>
+				<div class="div-block-54">{{ profileform.linkedin }}</div>
+			  </div>
+			  <div class="div-block-55">
+				<div class="div-block-61">
+				  <div class="div-block-59">
+					<div class="text-block-64">Years of Experience</div>
+				  </div>
+				  <div class="div-block-60">{{ profileform.yearexp }}</div>
+				</div>
+			  </div>
+			  <div class="div-block-55">
+				<div class="div-block-61">
+				  <div class="div-block-59">
+					<div class="text-block-64">Hourly Rate</div>
+				  </div>
+				  <div class="div-block-60">{{ profileform.cost }}</div>
+				</div>
+			  </div>
+			  <div class="div-block-55"><label for="name-3" class="field-label-11">Profile Picture</label>
+				<div class="div-block-54">{{ uploadPhoto.profile_image }}</div>
+			  </div>
+			  <input type="submit" value="Register" data-wait="Please wait..." class="submit-button-3 w-button">
+			  <a href="{% url 'userlogin' %}" class="link-10">Already have an account?</a>
+			</form>
+		  </div>
+	  </div>
+  </div>
+  <style>
+	#id_first_name {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+		
+	#id_last_name {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+		
+	#id_email {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+		
+	#id_username {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+		
+	#id_password1 {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+	
+	#id_password2 {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+	
+	#id_active {
+		float: left;
+		width: 25%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+	#id_prefix {
+		float: left;
+		width: 25%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+	#id_suffix {
+		float: left;
+		width: 25%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+	#id_servicelinedev {
+		float: left;
+		width: 25%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+	#id_capitalplan {
+		float: left;
+		width: 25%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+	#id_pysicianrecruitment {
+		float: left;
+		width: 25%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+	#id_processimprove {
+		float: left;
+		width: 25%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+	#id_productivity {
+		float: left;
+		width: 25%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+	#id_operationsfinance {
+		float: left;
+		width: 25%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+	#id_leadingmeetings {
+		float: left;
+		width: 25%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+	#id_dataanalysis {
+		float: left;
+		width: 25%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+	#id_teamcourses {
+		float: left;
+		width: 25%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+	#id_personalleadership {
+		float: left;
+		width: 25%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+	#id_personalitytypes {
+		float: left;
+		width: 25%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+	#id_tempassignments {
+		float: left;
+		width: 25%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+	#id_special1 {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+	#id_special2 {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+	#id_special3 {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+	#id_special4 {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+	#id_special5 {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+	#id_description {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+	#id_bio {
+		width: 100%;
+		height: 150px;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+	#id_linkedin {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+	#id_yearexp {
+		float: left;
+		width: 25%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+	#id_cost {
+		float: left;
+		width: 25%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+  </style>
+{% endblock %}

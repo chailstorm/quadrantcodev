@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% load static %}
+  <div class="section cc-home-wrap">
+    <div class="w-form">
+      <form method="post" action="{% url 'cancel' uid=uid year=year month=month day=day start=start %}" id="email-form" name="email-form" data-name="Email Form">
+	    {% csrf_token %}
+        <div class="div-block-23">
+          <div class="text-block-25">Your Q: {{ q }}</div>
+          <div class="text-block-23">Date: {{ month }}/{{ day }}</div>
+          <div class="text-block-23">Start time: {{ start }} </div>
+          <div class="text-block-23">End time: {{ end }}</div>
+          <div class="text-block-23">Cost: ${{ cost }}</div>
+		  <label for="name" class="field-label-5">Are you sure you want to cancel this session? </label>
+		  <input type="submit" value="Confirm" data-wait="Please wait..." class="submit-button-4 w-button">
+        </div>
+      </form>
+    </div>
+    <div class="text-block-23">Please note your refund may take several days to process.</div>
+  </div>
+{% endblock %}

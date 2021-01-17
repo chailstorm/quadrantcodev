@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% load static %}
+  <div class="section">
+    <div class="text-block-34">Recent Blog Posts</div>
+    <div class="div-block-34">
+		{% if blogposts %}
+			<ul role="list" class="w-list-unstyled">
+				{% for blogpost in blogposts %}
+					<li>
+					  <div class="div-block-5">
+						<div class="div-block-4 imageholder"><img src="{{ MEDIA_URL }}users/{{ blogpost.author }}.jpg" loading="lazy" sizes="5vw" alt="" class="image-3"></div>
+						<div class="div-block-3">
+						  <a href="{% url 'blogpost' bn=blogpost.bn %}" class="link-3">{{ blogpost.title }}</a>
+						  <div class="text-block-35">{{ blogpost.name }} | Q <br></div>
+						  <div>{{ blogpost.post_date }}</div>
+						</div>
+					  </div>
+					</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>No blog posts matching your search.</p>
+		{% endif %}
+    </div>
+  </div>
+{% endblock %}

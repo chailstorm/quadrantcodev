@@ -1,0 +1,206 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% load static %}
+  <div class="section cc-home-wrap">
+    <div class="div-block-8">
+      <div class="columns-3 w-row">
+        <div class="w-col w-col-6">
+          <div>
+            <div class="w-form">
+              <form action="{% url 'availability' getq=qn availstart=now %}" method="post" id="wf-form-recuravail" name="wf-form-recuravail" data-name="recuravail" class="form-4">
+			    {% csrf_token %}
+                <div class="text-block-49">Recurring Availability</div>
+                <div class="div-block-49">
+				  <div class="text-block-54">Day</div>
+				  {{ recurform.day }}
+				  <div class="text-block-54">Start Time</div>
+				  {{ recurform.hour }}
+                  <div class="text-block-48"> : </div>
+				  {{ recurform.minute }}
+				  {{ recurform.half }}
+                </div><input name="recuravail" type="submit" value="Submit" data-wait="Please wait..." class="submit-button-10 w-button">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="column w-col w-col-6">
+          <div class="form-block-5 w-form">
+            <form action="{% url 'availability' getq=qn availstart=now %}" method="post" id="wf-form-individualavail" name="wf-form-individualavail" data-name="individualavail">
+			  {% csrf_token %}
+              <div class="text-block-50">Individual Availability</div>
+			  <div class="text-block-56">Month</div>
+              <div class="text-block-52">Date</div>
+              <div>
+				{{ indyform.month }}
+                <div class="text-block-51">/</div>
+				{{ indyform.date }}
+				<div>Start Time</div>
+				{{ indyform.hour }}
+                <div class="text-block-53">:</div>
+				{{ indyform.minute }}
+				{{ indyform.half }}
+              </div>
+			  <input name="indyavail" type="submit" value="Submit" data-wait="Please wait..." class="submit-button-11 w-button">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="div-block-50"></div>
+    </div>
+  </div>
+  <div id="qa" class="section-2">
+    <div class="div-block-17">
+      <div class="text-block-17">Recurring Times</div>
+    </div>
+    <div class="div-block-18">
+      <div class="w-layout-grid grid-3">
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">Monday</div>
+          </div>
+          <div>
+		    {% for start in recurs.monday %}
+              <a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a>
+			{% endfor %}
+          </div>
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">Tuesday</div>
+          </div>
+          <div>
+		    {% for start in recurs.tuesday %}
+              <a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a>
+			{% endfor %}
+          </div>
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">Wednesday</div>
+          </div>
+          <div>
+		    {% for start in recurs.wednesday %}
+              <a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a>
+			{% endfor %}
+          </div>
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">Thursday</div>
+          </div>
+          <div>
+		    {% for start in recurs.thursday %}
+              <a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a>
+			{% endfor %}
+          </div>
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">Friday</div>
+          </div>
+          <div>
+		    {% for start in recurs.friday %}
+              <a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a>
+			{% endfor %}
+          </div>
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">Saturday</div>
+          </div>
+          <div>
+		    {% for start in recurs.saturday %}
+              <a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a>
+			{% endfor %}
+          </div>
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">Sunday</div>
+          </div>
+          <div>
+		    {% for start in recurs.sunday %}
+              <a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a>
+			{% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="qa" class="section-2">
+    <div class="div-block-17">
+      <div class="w-row">
+        <div class="w-col w-col-4">
+          <a href="{% url 'availability' getq=qn availstart=prevweek %}" class="button-5 w-button">Previous Week</a>
+        </div>
+        <div class="w-col w-col-4">
+          <div class="text-block-17">Full Schedule</div>
+        </div>
+        <div class="w-col w-col-4">
+          <a href="{% url 'availability' getq=qn availstart=nextweek %}" class="button-6 w-button">Next Week</a>
+        </div>
+      </div>
+    </div>
+    <div class="div-block-18">
+      <div class="w-layout-grid grid-3">
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">{{ avails.first.month }}/{{ avails.first.day }}</div>
+          </div>
+		  {% for start in avails.firststarts %}
+			<div><a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+		  {% endfor %}
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">{{ avails.second.month }}/{{ avails.second.day }}</div>
+          </div>
+  		  {% for start in avails.secondstarts %}
+			<div><a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+		  {% endfor %}
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">{{ avails.third.month }}/{{ avails.third.day }}</div>
+          </div>
+		  {% for start in avails.thirdstarts %}
+			<div><a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+		  {% endfor %}
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">{{ avails.fourth.month }}/{{ avails.fourth.day }}</div>
+          </div>
+		  {% for start in avails.fourthstarts %}
+			<div><a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+		  {% endfor %}
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">{{ avails.fifth.month }}/{{ avails.fifth.day }}</div>
+          </div>
+		  {% for start in avails.fifthstarts %}
+			<div><a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+		  {% endfor %}
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">{{ avails.sixth.month }}/{{ avails.sixth.day }}</div>
+          </div>
+		  {% for start in avails.sixthstarts %}
+			<div><a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+		  {% endfor %}
+        </div>
+        <div class="div-block-15">
+          <div>
+            <div class="text-block-18">{{ avails.seventh.month }}/{{ avails.seventh.day }}</div>
+          </div>
+		  {% for start in avails.seventhstarts %}
+			<div><a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+		  {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

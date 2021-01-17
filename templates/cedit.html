@@ -1,0 +1,62 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% load static %}
+  <div class="section cc-home-wrap">
+    <div class="div-block-8">
+	  <div class="w-row">
+        <div class="w-col w-col-3">
+          <div class="div-block-6"><img src="{{ MEDIA_URL }}users/{{ cn }}.jpg" loading="lazy" alt="" class="image-4"></div>
+        </div>
+        <div class="w-col w-col-9">
+          <div class="div-block-7">
+            <div class="text-block-9">{{ name }}</div>
+            <div class="text-block-10">{{ c.position }} at {{ c.company }}</div>
+            <div class="text-block-15">{{ c.location }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="div-block-9">
+        <a href="{% url 'create' %}" class="button-3 w-button">Blog Post</a>
+        <a href="{% url 'cupdate' %}" class="button-3 w-button">Edit Profile</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="section-4">
+    <div class="div-block-41">
+      <div class="w-row">
+        <div class="w-col w-col-6">
+          <div class="text-block-42">Q&amp;As</div>
+		  {% if qas %}
+			<ul role="list">
+				{% for qa in qas %}
+				  <div>
+					<a href="{{ qa.link }}" class="link-18">{{ qa.text }} |</a>
+					<a href="{% url 'forward' qid=qa.qn year=qa.year month=qa.month day=qa.date start=qa.start %}" class="link-20">Forward</a>
+					<a href="{% url 'cancel'  uid=cn year=qa.year month=qa.month day=qa.date start=qa.start %}" class="link-20">Cancel</a>
+				  </div>
+				{% endfor %}
+			</ul>
+		  {% else %}
+			<p>No Q&amp;As scheduled yet</p>
+		  {% endif %}
+        </div>
+        <div class="w-col w-col-6">
+          <div class="text-block-43">Blog Posts</div>
+		  {% if blogposts %}
+			<ul role="list">
+				{% for blogpost in blogposts %}
+				  <div>
+					<a href="{% url 'blogpost' bn=blogpost.bn %}" class="link-17">{{ blogpost.title }}</a>
+				  </div>
+				{% endfor %}
+			</ul>
+		  {% else %}
+			<p>No posts yet!</p>
+		  {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

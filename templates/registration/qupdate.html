@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% load static %}
+  <div class="section cc-home-wrap">
+    <div class="text-block-20">Register as a Q</div>
+    <div class="form-block w-form">
+      <form id="email-form" name="email-form" data-name="Email Form" method="POST" action="{% url 'qupdate' %}" enctype="multipart/form-data">
+        <div class="div-block-20">
+			{% csrf_token %}
+			{{form.errors}}
+			
+			{{profileform.as_p}}
+			<input type="submit" value="Update" data-wait="Please wait..." class="submit-button-3 w-button">
+			<a href="{% url 'userlogin' %}" class="link-10">Already have an account?</a>
+        </div>
+      </form>
+      <p class="paragraph"></p>
+    </div>
+  </div>
+  
+{% endblock %}

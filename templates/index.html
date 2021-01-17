@@ -1,0 +1,48 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% load static %}
+  <div class="section cc-store-home-wrap">
+    <div class="intro-header">
+      <div class="intro-content cc-homepage">
+        <div class="intro-text">
+          <div class="heading-jumbo">Knowledge +<br>Experience =<br>Understanding</div>
+          <div class="paragraph-bigger cc-bigger-white-light">Our consultants have actual experience in the medical field with specialists in strategy, operations, leadership, and more<br></div>
+        </div>
+        <a href="{% url 'solutions' %}" class="button cc-jumbo-button cc-jumbo-white w-inline-block">
+          <div>find a q</div>
+        </a>
+      </div>
+    </div>
+    <div class="container">
+      <div class="motto-wrap">
+        <div class="label cc-light">Our people</div>
+        <div class="heading-jumbo-small">Our consultants are called Q&#x27;s, and are available for Q&amp;A video calls<br></div>
+      </div>
+      <div class="divider"></div>
+      <div class="home-content-wrap">
+        <div class="w-layout-grid about-grid">
+          <div id="w-node-76c147234d34-45dd4795">
+            <div class="home-section-wrap">
+              <p class="paragraph-light">Have a rush issue you need help solving? Or require a rapid turnaround on a consult? Our consultants are carefully chosen from professionals in industry, they have already had experience with the problems you are looking to solve. Message us directly and we'll have the right expert for you on a call within a few hours.</p>
+            </div>
+            <a href="{% url 'contactRush' %}" class="button w-inline-block">
+              <div>Message Us Directly</div>
+            </a>
+          </div><img src="{% static 'images/Quadco.GIF' %}" id="w-node-76c147234d3f-45dd4795" alt="">
+        </div>
+        <div class="w-layout-grid about-grid cc-about-2">
+          <div id="w-node-76c147234d41-45dd4795">
+            <div class="home-section-wrap">
+              <p class="paragraph-light">Want your organization to be equiped for success long term with the experience our consultants have? We also offer custom tailored enterprise solutions, our enterprise group can help in crafting the right team for your needs.</p>
+            </div>
+            <a href="{% url 'contactEnterprise' %}" class="button w-inline-block">
+              <div>Enterprise Solutions</div>
+            </a>
+          </div><img src="{% static 'images/Quadco.GIF' %}" id="w-node-76c147234d4c-45dd4795" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

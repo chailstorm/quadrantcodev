@@ -1,0 +1,61 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% load static %}
+  <div class="section cc-home-wrap">
+    <div class="columns-2 w-row">
+      <div class="w-col w-col-1">
+        <div class="div-block-45"><img src="{{ MEDIA_URL }}users/{{ blogpost.author }}.jpg" loading="lazy" alt="" class="image-7"></div>
+      </div>
+      <div class="w-col w-col-11">
+        <div class="div-block-24">
+          <div class="text-block-27">{{ blogpost.title }}</div>
+          <a href="{% url 'profiles' getq=blogpost.author availstart=now %}" class="link-13">{{ blogpost.name }}</a>
+          <div class="text-block-36">{{ blogpost.post_date }}</div>
+          <div class="text-block-28">{{ blogpost.body|safe }}<br></div>
+          <div class="form-block-2 w-form">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="div-block-43">
+      <div class="text-block-46">Comments</div>
+      <div>
+        <ul role="list" class="list w-list-unstyled">
+		  {% if comments %}
+			  {% for comment in comments %}
+			  <li>
+				<div class="w-row">
+				  <div class="w-col w-col-1">
+					<div class="div-block-45"><img src="{{ MEDIA_URL }}users/{{ comment.author }}.jpg" loading="lazy" alt="" class="image-7"></div>
+				  </div>
+				  <div class="w-col w-col-11">
+					<div>
+					  <a href="#" class="link-19">{{ comment.name }}</a>
+					  <div>{{ comment.body|safe }}</div>
+					</div>
+				  </div>
+				</div>
+			  </li>
+			  {% endfor %}
+		  {% else %}
+			<p>There are no comments on this post yet. Be the first!</p>
+		  {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="div-block-46">
+    <div class="form-block-4 w-form">
+      <form action="{% url 'blogpost' bn=blogpost.bn %}" method="post" id="email-form-2" name="email-form-2" data-name="Email Form 2">
+		{% csrf_token %}
+        <div class="text-block-47">Contribute</div>
+        <div class="div-block-48">
+		{{form.media}}
+		{{form.body}}
+		</div>
+        <div class="div-block-47"><input type="submit" value="Submit" data-wait="Please wait..." class="submit-button-9 w-button"></div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

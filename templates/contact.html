@@ -1,0 +1,68 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% load static %}
+  <div class="section cc-home-wrap">
+    <div class="w-form">
+	  {% for message in messages %}
+		<p class="paragraph">{{message}}</p>
+	  {% endfor %}
+      <form method="post" action="{% url 'contact' qid=qid %}" id="email-form" name="email-form" data-name="Email Form">
+		  {% csrf_token %}
+		  <div class="div-block-33">
+			  <label for="name">Name</label>
+			  {{form.name}}
+			  <label for="email">Email Address</label>
+			  {{form.email}}
+			  <label>How can we help you?</label>
+			  {{form.comment}}
+		  </div>
+		  <div class="div-block-25"><input type="submit" value="Submit" data-wait="Please wait..." class="submit-button-6 w-button"></div>
+	  </form>
+    </div>
+  </div>
+  <style>
+	#id_name {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+		
+	#id_email {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 18px;
+		padding: 5px 5px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		font-size: 14px;
+		line-height: 26px;
+		}
+	
+	
+	#id_comment {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		min-height: 25px;
+		max-height: 150px;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+		}
+  </style>
+  
+
+{% endblock %}
