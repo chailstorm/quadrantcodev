@@ -224,23 +224,28 @@ class qprofile():
 					'month__exact': date.month,
 					'date__exact': date.day,
 					}
-		objs = avail.objects.filter(**filter_kwargs).exclude(status=0)
+		objs = avail.objects.filter(**filter_kwargs) #.exclude(status=0)
 		return objs
 	
 	def orderIndys(objs):
 		firststarts = [0]*len(objs)
 		if len(objs)>0:
 			for start in range(0,len(objs)):
-				firststarts[start] = [objs[start].start,objs[start].end]
+				firststarts[start] = [objs[start].start,objs[start].end,objs[start].year,objs[start].month,objs[start].date,objs[start].status]
 		
 		if len(firststarts)>0:
 			datetimes = [0]*len(firststarts)
 			for start in range(0,len(firststarts)):
-				datetimes[start] = [qprofile.dt24hrTime(firststarts[start][0]),qprofile.dt24hrTime(firststarts[start][1])]
+				datetimes[start] = [qprofile.dt24hrTime(firststarts[start][0]),qprofile.dt24hrTime(firststarts[start][1]),objs[start].year,objs[start].month,objs[start].date,objs[start].status]
 			datetimes = sorted(datetimes,key=lambda x: x[1])
 			for start in range(0,len(firststarts)):
 				firststarts[start] =  {'starttime': qprofile.str12hrTime(datetimes[start][0]),
-					'endtime': qprofile.str12hrTime(datetimes[start][1])}
+					'endtime': qprofile.str12hrTime(datetimes[start][1]),
+					'year': datetimes[start][2],
+					'month': datetimes[start][3],
+					'date': datetimes[start][4],
+					'status': datetimes[start][5],
+					}
 		else:
 			firststarts = {}
 		
@@ -417,5 +422,33 @@ class qprofile():
 				'recurs': recurs,
 				}
 			return render(request, 'setAvail.html', context=context)
+		else:
+			return redirect('profiles',getq=getq,availstart=now)
+	
+	@login_required
+	def unsetAvail(request, getq, availstart, year, month, date, starttime):
+		getq = int(getq)
+		now = dt.datetime.now()
+		now_dt = now
+		now = now.strftime('%Y-%m-%d')
+		start = starttime
+		if int(request.user.id)==getq:
+			filter_kwargs = {
+				'qn__exact': getq,
+				'year__exact': year,
+				'month__exact': month,
+				'date__exact': date,
+				'start__exact': start,
+				}
+			slot = avail.objects.filter(**filter_kwargs)[0]
+			if slot.status==1:
+				slot.status = 0
+				slot.save()
+			elif slot.status==0:
+				slot.status = 1
+				slot.save()
+			else:
+				return redirect('cancel',uid=getq,year=year,month=month,day=date,start=start)
+			return redirect('availability',getq=getq,availstart=availstart)
 		else:
 			return redirect('profiles',getq=getq,availstart=now)

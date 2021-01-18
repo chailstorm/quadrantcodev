@@ -127,6 +127,7 @@
         </div>
       </div>
     </div>
+	<div class="text-block-65">Click on a recurring time to delete it - note it will not cancel any already scheduled times.</div>
   </div>
   <div id="qa" class="section-2">
     <div class="div-block-17">
@@ -149,7 +150,11 @@
             <div class="text-block-18">{{ avails.first.month }}/{{ avails.first.day }}</div>
           </div>
 		  {% for start in avails.firststarts %}
-			<div><a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+			{% if start.status == 0 %}
+			  <a href="{% url 'unset' getq=qn availstart=now year=start.year month=start.month date=start.date starttime=start.starttime %}" class="link-24">{{ start.starttime }} - {{ start.endtime }}</a>
+			{% else %}
+			  <div><a href="{% url 'unset' getq=qn availstart=now year=start.year month=start.month date=start.date starttime=start.starttime %}" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+			{% endif %}
 		  {% endfor %}
         </div>
         <div class="div-block-15">
@@ -157,7 +162,11 @@
             <div class="text-block-18">{{ avails.second.month }}/{{ avails.second.day }}</div>
           </div>
   		  {% for start in avails.secondstarts %}
-			<div><a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+			{% if start.status == 0 %}
+			  <a href="{% url 'unset' getq=qn availstart=now year=start.year month=start.month date=start.date starttime=start.starttime %}" class="link-24">{{ start.starttime }} - {{ start.endtime }}</a>
+			{% else %}
+			  <div><a href="{% url 'unset' getq=qn availstart=now year=start.year month=start.month date=start.date starttime=start.starttime %}" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+			{% endif %}
 		  {% endfor %}
         </div>
         <div class="div-block-15">
@@ -165,7 +174,11 @@
             <div class="text-block-18">{{ avails.third.month }}/{{ avails.third.day }}</div>
           </div>
 		  {% for start in avails.thirdstarts %}
-			<div><a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+			{% if start.status == 0 %}
+			  <a href="{% url 'unset' getq=qn availstart=now year=start.year month=start.month date=start.date starttime=start.starttime %}" class="link-24">{{ start.starttime }} - {{ start.endtime }}</a>
+			{% else %}
+			  <div><a href="{% url 'unset' getq=qn availstart=now year=start.year month=start.month date=start.date starttime=start.starttime %}" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+			{% endif %}
 		  {% endfor %}
         </div>
         <div class="div-block-15">
@@ -173,7 +186,11 @@
             <div class="text-block-18">{{ avails.fourth.month }}/{{ avails.fourth.day }}</div>
           </div>
 		  {% for start in avails.fourthstarts %}
-			<div><a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+			{% if start.status == 0 %}
+			  <a href="{% url 'unset' getq=qn availstart=now year=start.year month=start.month date=start.date starttime=start.starttime %}" class="link-24">{{ start.starttime }} - {{ start.endtime }}</a>
+			{% else %}
+			  <div><a href="{% url 'unset' getq=qn availstart=now year=start.year month=start.month date=start.date starttime=start.starttime %}" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+			{% endif %}
 		  {% endfor %}
         </div>
         <div class="div-block-15">
@@ -181,7 +198,11 @@
             <div class="text-block-18">{{ avails.fifth.month }}/{{ avails.fifth.day }}</div>
           </div>
 		  {% for start in avails.fifthstarts %}
-			<div><a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+			{% if start.status == 0 %}
+			  <a href="{% url 'unset' getq=qn availstart=now year=start.year month=start.month date=start.date starttime=start.starttime %}" class="link-24">{{ start.starttime }} - {{ start.endtime }}</a>
+			{% else %}
+			  <div><a href="{% url 'unset' getq=qn availstart=now year=start.year month=start.month date=start.date starttime=start.starttime %}" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+			{% endif %}
 		  {% endfor %}
         </div>
         <div class="div-block-15">
@@ -189,7 +210,11 @@
             <div class="text-block-18">{{ avails.sixth.month }}/{{ avails.sixth.day }}</div>
           </div>
 		  {% for start in avails.sixthstarts %}
-			<div><a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+			{% if start.status == 0 %}
+			  <a href="{% url 'unset' getq=qn availstart=now year=start.year month=start.month date=start.date starttime=start.starttime %}" class="link-24">{{ start.starttime }} - {{ start.endtime }}</a>
+			{% else %}
+			  <div><a href="{% url 'unset' getq=qn availstart=now year=start.year month=start.month date=start.date starttime=start.starttime %}" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+			{% endif %}
 		  {% endfor %}
         </div>
         <div class="div-block-15">
@@ -197,10 +222,15 @@
             <div class="text-block-18">{{ avails.seventh.month }}/{{ avails.seventh.day }}</div>
           </div>
 		  {% for start in avails.seventhstarts %}
-			<div><a href="#" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+			{% if start.status == 0 %}
+			  <a href="{% url 'unset' getq=qn availstart=now year=start.year month=start.month date=start.date starttime=start.starttime %}" class="link-24">{{ start.starttime }} - {{ start.endtime }}</a>
+			{% else %}
+			  <div><a href="{% url 'unset' getq=qn availstart=now year=start.year month=start.month date=start.date starttime=start.starttime %}" class="link-8">{{ start.starttime }} - {{ start.endtime }}</a></div>
+			{% endif %}
 		  {% endfor %}
         </div>
       </div>
     </div>
+	<div class="text-block-65">Click on a scheduled time to cancel it (the time will show with a strikethrough) - click again to reactivate.</div>
   </div>
 {% endblock %}

@@ -352,6 +352,7 @@ figcaption {
   bottom: 0px;
   margin-top: 0px;
   margin-bottom: 0px;
+  color: #fff;
   font-size: 64px;
   line-height: 80px;
   text-transform: none;
@@ -637,7 +638,10 @@ figcaption {
 }
 
 .intro-content.cc-homepage {
+  margin-right: auto;
   margin-bottom: 20px;
+  margin-left: auto;
+  padding-top: 100px;
 }
 
 .motto-wrap {
@@ -1729,7 +1733,7 @@ figcaption {
   right: 0%;
   bottom: auto;
   min-height: 25px;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .text-block-16 {
@@ -1799,7 +1803,7 @@ figcaption {
 
 .div-block-15 {
   min-height: 100px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: 1px solid #000;
 }
 
@@ -2530,7 +2534,7 @@ figcaption {
 .submit-button-10 {
   display: block;
   margin-right: auto;
-  margin-left: 15%;
+  margin-left: auto;
 }
 
 .select-field-7 {
@@ -2547,11 +2551,13 @@ figcaption {
 
 .select-field-9 {
   width: 232px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .text-block-49 {
   font-weight: 600;
-  text-align: left;
+  text-align: center;
 }
 
 .field-label-8 {
@@ -2570,6 +2576,7 @@ figcaption {
 
 .text-block-50 {
   font-weight: 600;
+  text-align: center;
 }
 
 .select-field-10 {
@@ -2614,7 +2621,8 @@ figcaption {
 }
 
 .submit-button-11 {
-  margin-left: 15%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .select-field-13 {
@@ -2644,7 +2652,9 @@ figcaption {
 
 .text-block-54 {
   width: 232px;
+  margin-right: auto;
   margin-bottom: 10px;
+  margin-left: auto;
   font-size: 12px;
   line-height: 20px;
   font-weight: 500;
@@ -2879,6 +2889,112 @@ figcaption {
   -webkit-align-items: flex-start;
   -ms-flex-align: start;
   align-items: flex-start;
+}
+
+.div-block-62 {
+  width: 100vw;
+}
+
+.heading {
+  position: static;
+  min-height: 1000px;
+  border: 1px solid #fff;
+  color: #fff;
+  text-align: center;
+}
+
+.div-block-63 {
+  position: absolute;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.section-5 {
+  position: static;
+  margin-bottom: 40px;
+}
+
+.image-8 {
+  display: block;
+}
+
+.heading-2 {
+  position: static;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: auto;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 60px;
+  color: #fff;
+  text-align: center;
+}
+
+.paragraph-2 {
+  position: static;
+  color: #fff;
+  text-align: center;
+}
+
+.div-block-64 {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: auto;
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.button-7 {
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #fff;
+  color: #000;
+}
+
+.div-block-65 {
+  text-align: center;
+}
+
+.column-4 {
+  text-align: center;
+}
+
+.form-5 {
+  text-align: center;
+}
+
+.div-block-66 {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.text-block-65 {
+  margin-right: 10px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.link-21 {
+  font-size: 12px;
+}
+
+.link-22 {
+  font-size: 14px;
+}
+
+.link-23 {
+  text-decoration: line-through;
+}
+
+.link-24 {
+  font-size: 14px;
+  text-decoration: line-through;
 }
 
 @media screen and (max-width: 991px) {

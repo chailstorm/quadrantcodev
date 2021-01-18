@@ -7,7 +7,7 @@
       <form method="post" action="{% url 'cancel' uid=uid year=year month=month day=day start=start %}" id="email-form" name="email-form" data-name="Email Form">
 	    {% csrf_token %}
         <div class="div-block-23">
-          <div class="text-block-25">Your Q: {{ q }}</div>
+          <div class="text-block-25">&#x27;Q&amp;A&#x27; With: {{ q }}</div>
           <div class="text-block-23">Date: {{ month }}/{{ day }}</div>
           <div class="text-block-23">Start time: {{ start }} </div>
           <div class="text-block-23">End time: {{ end }}</div>
