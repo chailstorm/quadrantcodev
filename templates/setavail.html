@@ -2,46 +2,83 @@
 
 {% block content %}
   {% load static %}
-  <div class="section cc-home-wrap">
+  
+    <div class="section cc-home-wrap">
     <div class="div-block-8">
       <div class="columns-3 w-row">
-        <div class="w-col w-col-6">
+        <div class="column-4 w-col w-col-6">
           <div>
             <div class="w-form">
               <form action="{% url 'availability' getq=qn availstart=now %}" method="post" id="wf-form-recuravail" name="wf-form-recuravail" data-name="recuravail" class="form-4">
 			    {% csrf_token %}
                 <div class="text-block-49">Recurring Availability</div>
                 <div class="div-block-49">
-				  <div class="text-block-54">Day</div>
-				  {{ recurform.day }}
-				  <div class="text-block-54">Start Time</div>
-				  {{ recurform.hour }}
+                  <div class="text-block-54">Day</div>
+                  <div class="div-block-70">{{ recurform.day }}</div>
+                  <div class="text-block-54">Start Time</div>
+                  <div class="div-block-71">{{ recurform.hour }}</div>
                   <div class="text-block-48"> : </div>
-				  {{ recurform.minute }}
-				  {{ recurform.half }}
+                  <div class="div-block-72">{{ recurform.minute }}</div>
+                  <div class="div-block-73">{{ recurform.half }}</div>
                 </div><input name="recuravail" type="submit" value="Submit" data-wait="Please wait..." class="submit-button-10 w-button">
               </form>
             </div>
           </div>
         </div>
+		  <style>
+			#id_day {
+				display: inline-block;
+				width: 100%;
+				border: 1px solid #e4e4e4;
+				border-radius: 0px;
+				-webkit-transition: border-color 400ms ease;
+				transition: border-color 400ms ease;
+			}
+
+			#id_hour {
+				display: inline-block;
+				width: 100%;
+				border: 1px solid #e4e4e4;
+				border-radius: 0px;
+				-webkit-transition: border-color 400ms ease;
+				transition: border-color 400ms ease;
+			}
+			
+			#id_minute {
+				display: inline-block;
+				width: 100%;
+				border: 1px solid #e4e4e4;
+				border-radius: 0px;
+				-webkit-transition: border-color 400ms ease;
+				transition: border-color 400ms ease;
+			}
+			
+			#id_half {
+				display: inline-block;
+				width: 100%;
+				border: 1px solid #e4e4e4;
+				border-radius: 0px;
+				-webkit-transition: border-color 400ms ease;
+				transition: border-color 400ms ease;
+			}
+		  </style>
         <div class="column w-col w-col-6">
           <div class="form-block-5 w-form">
-            <form action="{% url 'availability' getq=qn availstart=now %}" method="post" id="wf-form-individualavail" name="wf-form-individualavail" data-name="individualavail">
+            <form action="{% url 'availability' getq=qn availstart=now %}" method="post" id="wf-form-individualavail" name="wf-form-individualavail" data-name="individualavail" class="form-5">
 			  {% csrf_token %}
               <div class="text-block-50">Individual Availability</div>
-			  <div class="text-block-56">Month</div>
+              <div class="text-block-56">Month</div>
               <div class="text-block-52">Date</div>
-              <div>
-				{{ indyform.month }}
+              <div class="div-block-66">
+                <div class="div-block-74">{{ indyform.month }}</div>
                 <div class="text-block-51">/</div>
-				{{ indyform.date }}
-				<div>Start Time</div>
-				{{ indyform.hour }}
+                <div class="div-block-75">{{ indyform.date }}</div>
+                <div class="text-block-59">Start Time</div>
+                <div class="div-block-76">{{ indyform.hour }}</div>
                 <div class="text-block-53">:</div>
-				{{ indyform.minute }}
-				{{ indyform.half }}
-              </div>
-			  <input name="indyavail" type="submit" value="Submit" data-wait="Please wait..." class="submit-button-11 w-button">
+                <div class="div-block-77">{{ indyform.minute }}</div>
+                <div class="div-block-78">{{ indyform.half }}</div>
+              </div><input name="indyavail" type="submit" value="Submit" data-wait="Please wait..." class="submit-button-11 w-button">
             </form>
           </div>
         </div>
@@ -49,6 +86,54 @@
       <div class="div-block-50"></div>
     </div>
   </div>
+  
+    <style>
+	#id_date {
+	    display: inline-block;
+		width: 100%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+	}
+	
+	#id_month {
+	    display: inline-block;
+		width: 100%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+	}
+	
+	#id_hour {
+	    display: inline-block;
+		width: 100%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+	}
+	
+	#id_minute {
+	    display: inline-block;
+		width: 100%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+	}
+	
+	#id_half {
+	    display: inline-block;
+		width: 100%;
+		border: 1px solid #e4e4e4;
+		border-radius: 0px;
+		-webkit-transition: border-color 400ms ease;
+		transition: border-color 400ms ease;
+	}
+  </style>
+  
   <div id="qa" class="section-2">
     <div class="div-block-17">
       <div class="text-block-17">Recurring Times</div>
@@ -233,4 +318,5 @@
     </div>
 	<div class="text-block-65">Click on a scheduled time to cancel it (the time will show with a strikethrough) - click again to reactivate.</div>
   </div>
+  
 {% endblock %}

@@ -398,16 +398,16 @@ class checkout():
 				subject = 'Your Q&A Session'
 				html_message = render_to_string('meeting/email.html',values)
 				plain_message = strip_tags(html_message)
-				from_email = 'From <coltjames.hail@gmail.com>'
+				from_email = 'coltjames.hail@gmail.com'
 				c_email = request.user.email
-				#mail.send_mail(subject,plain_message,from_email,[c_email],html_message=html_message)
+				mail.send_mail(subject,plain_message,from_email,[c_email],html_message=html_message)
 				c_url = values['meeting']['url']
 				#Q values
 				q_email = qdata.email
 				values['meeting']['url'] = 'http://127.0.0.1:8000/join/meeting/'+qdata.first+'_'+qdata.last+'/'+str(rs_id)+'/'+str(rs_pass)
 				html_message = render_to_string('meeting/email.html',values)
 				plain_message = strip_tags(html_message)
-				#mail.send_mail(subject,plain_message,from_email,[q_email],html_message=html_message)
+				mail.send_mail(subject,plain_message,from_email,[q_email],html_message=html_message)
 				q_url = values['meeting']['url']
 				#Update avail db
 				

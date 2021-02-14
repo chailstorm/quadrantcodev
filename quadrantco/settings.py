@@ -12,15 +12,16 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from . import env_vars
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = env_vars.SECRET_KEY
 
-DEBUG = False
+DEBUG = env_vars.DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -89,8 +90,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'dev',
-		'USER': os.environ['DB_USER'],
-		'PASSWORD': os.environ['DB_PASSWORD'],
+		'USER': env_vars.DB_USER,
+		'PASSWORD': env_vars.DB_PASSWORD,
 		'HOST': 'quadco-dev1.czb5ng3aws9d.us-east-1.rds.amazonaws.com',
 		'PORT': '3306',
     }
@@ -128,8 +129,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 #S3 Information
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_ACCESS_KEY_ID = env_vars.AWS_ACCESS_KEY
+AWS_SECRET_ACCESS_KEY = env_vars.AWS_SECRET_ACCESS_KEY
 AWS_STORAGE_BUCKET_NAME = 'quadco-dev1'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
@@ -158,14 +159,14 @@ LOGIN_URL = '/userlogin/error'
 
 
 #ZOOM account information
-ZOOM = {'KEY': os.environ['ZOOM_KEY'], 'SECRET': os.environ['ZOOM_SECRET']}
+ZOOM = {'KEY': env_vars.ZOOM_KEY, 'SECRET': env_vars.ZOOM_SECRET}
 
 #EMAIL Settings
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = os.environ['EMAIL_USER']
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASSWORD']
+EMAIL_HOST_USER = env_vars.EMAIL_USER
+EMAIL_HOST_PASSWORD = env_vars.EMAIL_PASSWORD
 EMAIL_USE_TLS = True
 
 #Stripe account information
-STRIPE = {'KEY': os.environ['STRIPE_KEY'], 'SECRET': os.environ['STRIPE_SECRET'],'ACCT': os.environ['STRIPE_ACCT']}
+STRIPE = {'KEY': env_vars.STRIPE_KEY, 'SECRET': env_vars.STRIPE_SECRET,'ACCT': env_vars.STRIPE_ACCT}
