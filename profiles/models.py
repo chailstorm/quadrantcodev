@@ -18,6 +18,8 @@ class avail(models.Model):
 	orderid = models.CharField(max_length=255,null=True,blank=True)
 	qurl = models.TextField(null=True,blank=True)
 	curl = models.TextField(null=True,blank=True)
+	confirmedEmail = models.IntegerField(default=0)
+	canceledEmail = models.IntegerField(default=0)
 	
 class recur(models.Model):
 	days = [('monday','Monday'),('tuesday','Tuesday'),('wednesday','Wednesday'),('thursday','Thursday'),('friday','Friday'),('saturday','Saturday'),('sunday','Sunday')]

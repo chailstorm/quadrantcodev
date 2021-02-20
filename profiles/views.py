@@ -421,7 +421,7 @@ class qprofile():
 				'indyform': indyform,
 				'recurs': recurs,
 				}
-			return render(request, 'setAvail.html', context=context)
+			return render(request, 'setavail.html', context=context)
 		else:
 			return redirect('profiles',getq=getq,availstart=now)
 	

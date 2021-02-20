@@ -6,3 +6,4 @@ class contacts(models.Model):
 	email = models.CharField(max_length=255,blank=False)
 	directed = models.IntegerField(default=0,blank=True)
 	comment = models.TextField()
+	contactEmail = models.IntegerField(default=0)
