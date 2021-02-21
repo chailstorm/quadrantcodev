@@ -23,7 +23,7 @@ SECRET_KEY = env_vars.SECRET_KEY
 
 DEBUG = env_vars.DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env_vars.ALLOWED_HOST
 
 
 # Application definition
