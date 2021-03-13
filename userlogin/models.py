@@ -40,6 +40,11 @@ class QregStr(models.Model):
 	
 	def __str__(self):
 		return str(self.assigned)
-	
-	
-	
+
+
+class passwordreset(models.Model):
+	username = models.CharField(max_length=50)
+	requestsent = models.IntegerField(default=0)
+	codestr = models.CharField(max_length=20)
+	requesttime = models.DateTimeField(auto_now_add=True)
+	url = models.CharField(max_length=255)

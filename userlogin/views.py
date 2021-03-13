@@ -4,14 +4,18 @@ from django.contrib.auth.forms import AuthenticationForm
 import stripe
 from quadrantco.settings import STRIPE
 import datetime as dt
+import string
+import random
 from .forms import createUserForm
 from .forms import createUserProfile
 from .forms import createQprofile
 from .forms import createQphoto
-from .models import Qstripe, QregStr, clientprofile
+from .forms import passwordReset
+from .models import Qstripe, QregStr, clientprofile, passwordreset
 from solutions.models import qinfo
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.conf import settings
 
 # Create your views here.
 def gotoLogin(request):
@@ -153,8 +157,8 @@ def qregister(request, regStr):
 				
 				account_link = stripe.AccountLink.create(
 					account= account_id,
-					refresh_url='http://127.0.0.1:8000/userlogin/',
-					return_url='http://127.0.0.1:8000/userlogin/',
+					refresh_url=settings.ADDRESS+'userlogin/',
+					return_url=settings.ADDRESS+'userlogin/',
 					type='account_onboarding',
 					)
 				account_link_url = account_link['url']
@@ -195,3 +199,22 @@ def cprofileUpdate(request):
 		
 		return redirect('account', getq=request.user.id)  
 	return render(request, 'registration/cupdate.html', context)
+
+def forgotPassword(request):
+	resetform = passwordReset
+	if request.method=='POST':
+		resetform = passwordReset(request.POST)
+		if resetform.is_valid():
+			reset = resetform.save(commit=False)
+			letters = string.ascii_lowercase
+			result_str = ''.join(random.choice(letters) for i in range(10))
+			reset.codestr = result_str
+			
+			link = settings.ADDRESS+'userlogin/resetpassword/'+result_str
+			reset.url = link
+			reset.save()
+			return render(request, 'registration/passwordresetsent.html', context={})
+	return render(request, 'registration/passwordreset.html', context={'resetform': resetform})
+
+def resetPassword(request, resetStr):
+	return render(request, 'registration/passwordresetsent.html', context={})

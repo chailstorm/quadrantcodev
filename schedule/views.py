@@ -25,7 +25,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import numpy as np
+from .models import forwards
 from .forms import forwardQA
+from django.conf import settings
 
 # Create your views here.
 
@@ -77,8 +79,6 @@ class scheduler():
 			slot.description = desc
 			slot.cost = cost
 			slot.save()
-			
-			#messages.success(request, f"Q&A confirmed, you will receive an email confirmation with the ZOOM link shortly.")
 			
 			return redirect('checkout',qid=qid,year=year,month=month,day=day,start=start,end=end)
 		
@@ -172,25 +172,33 @@ class scheduler():
 			forwardform = forwardQA(data=request.POST)
 			if forwardform.is_valid():
 				name = forwardform.cleaned_data.get('name')
-				email = forwardform.cleaned_data.get('email')
+				#email = forwardform.cleaned_data.get('email')
 				name = name.replace(" ","_")
 				
+				fwd = forwardform.save(commit=False)
+				fwd.name = name
+				fwd.qn = qid
+				fwd.year = year
+				fwd.month = month
+				fwd.date = day
+				fwd.start = start
 				
 				values = {
 					'name': name,
 					'meeting': {
 						'date': str(year)+'-'+str(month)+'-'+str(day),
 						'time': start,
-						'url': 'http://127.0.0.1:8000/join/meeting/'+name+'/'+str(slot.meetingid)+'/'+str(slot.password)
+						'url': settings.ADDRESS+'join/meeting/'+name+'/'+str(slot.meetingid)+'/'+str(slot.password)
 						}
 					}
-					
-				subject = 'You''ve been invited!'
-				html_message = render_to_string('meeting/email.html',values)
-				plain_message = strip_tags(html_message)
-				from_email = 'coltjames.hail@gmail.com'
-				f_email = email
-				mail.send_mail(subject,plain_message,from_email,[f_email],html_message=html_message)
+				fwd.url = values['meeting']['url']
+				fwd.save()
+				#subject = 'You''ve been invited!'
+				#html_message = render_to_string('meeting/email.html',values)
+				#plain_message = strip_tags(html_message)
+				#from_email = 'coltjames.hail@gmail.com'
+				#f_email = email
+				#mail.send_mail(subject,plain_message,from_email,[f_email],html_message=html_message)
 				messages.info(request, "Invite forwarded sucessfully. Forward to another participant if you wish.")
 		
 		context = {
@@ -391,7 +399,7 @@ class checkout():
 					'meeting': {
 						'date': str(year)+'-'+str(month)+'-'+str(day),
 						'time': start,
-						'url': 'http://127.0.0.1:8000/join/meeting/'+request.user.username+'/'+str(rs_id)+'/'+str(rs_pass)
+						'url': settings.ADDRESS+'join/meeting/'+request.user.username+'/'+str(rs_id)+'/'+str(rs_pass)
 						}
 					}
 					
@@ -404,7 +412,7 @@ class checkout():
 				c_url = values['meeting']['url']
 				#Q values
 				#q_email = qdata.email
-				values['meeting']['url'] = 'http://54.167.229.25:80/join/meeting/'+qdata.first+'_'+qdata.last+'/'+str(rs_id)+'/'+str(rs_pass)
+				values['meeting']['url'] = settings.ADDRESS+'join/meeting/'+qdata.first+'_'+qdata.last+'/'+str(rs_id)+'/'+str(rs_pass)
 				#html_message = render_to_string('meeting/email.html',values)
 				#plain_message = strip_tags(html_message)
 				#mail.send_mail(subject,plain_message,from_email,[q_email],html_message=html_message)

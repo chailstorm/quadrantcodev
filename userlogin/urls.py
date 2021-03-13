@@ -11,4 +11,6 @@ urlpatterns = [
 	path('qregister/<str:regStr>',views.qregister, name='qregister'),
 	path('qupdate',views.qprofileUpdate,name='qupdate'),
 	path('cupdate',views.cprofileUpdate,name='cupdate'),
+	path('forgotpassword',views.forgotPassword,name='forgotpassword'),
+	path('resetpassword/<str:resetStr>',views.resetPassword,name='resetpassword'),
 	]

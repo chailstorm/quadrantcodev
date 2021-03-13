@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import clientprofile, Qphoto
+from .models import clientprofile, Qphoto, passwordreset
 from solutions.models import qinfo
 
 
@@ -50,5 +50,9 @@ class createQphoto(forms.ModelForm):
 	class Meta:
 		model = Qphoto
 		fields = ['profile_image']
-	
 
+
+class passwordReset(forms.ModelForm):
+	class Meta:
+		model = passwordreset
+		fields = ['username']

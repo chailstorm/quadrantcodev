@@ -23,9 +23,9 @@ SECRET_KEY = env_vars.SECRET_KEY
 
 DEBUG = env_vars.DEBUG
 
-ALLOWED_HOSTS = env_vars.ALLOWED_HOST
+ALLOWED_HOSTS = ['54.167.229.25']
 
-
+ADDRESS = 'http://54.167.229.25:80/'
 # Application definition
 
 INSTALLED_APPS = [

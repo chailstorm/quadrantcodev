@@ -1,5 +1,7 @@
 from django import forms
+from .models import forwards
 
-class forwardQA(forms.Form):
-	name = forms.CharField(max_length=255)
-	email = forms.CharField(max_length=255)
+class forwardQA(forms.ModelForm):
+	class Meta:
+		model = forwards
+		fields = ['name','email']

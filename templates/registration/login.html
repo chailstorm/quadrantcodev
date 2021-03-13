@@ -16,7 +16,7 @@
             <div class="div-block-31"><label for="name-2" class="field-label-3">Password</label></div>
             <div class="div-block-30">{{form.password}}</div>
           </div><input type="submit" value="Login" data-wait="Please wait..." class="submit-button-3 w-button">
-          <a href="#" class="link-10">Forgot Password</a>
+          <a href="{% url 'forgotpassword' %}" class="link-10">Forgot Password</a>
 		  <a href="{% url 'register' %}" class="link-10">Don't have an account?</a>
         </div>
 	  </form>
