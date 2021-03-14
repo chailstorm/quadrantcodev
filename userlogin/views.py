@@ -4,13 +4,17 @@ from django.contrib.auth.forms import AuthenticationForm
 import stripe
 from quadrantco.settings import STRIPE
 import datetime as dt
+import datetime as dt
 import string
 import random
 from .forms import createUserForm
 from .forms import createUserProfile
 from .forms import createQprofile
 from .forms import createQphoto
-from .forms import passwordReset
+#from .forms import passwordReset
+#from .forms import resetPassword
+#from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.forms import SetPasswordForm
 from .models import Qstripe, QregStr, clientprofile, passwordreset
 from solutions.models import qinfo
 from django.contrib.auth.decorators import login_required
@@ -217,4 +221,27 @@ def forgotPassword(request):
 	return render(request, 'registration/passwordreset.html', context={'resetform': resetform})
 
 def resetPassword(request, resetStr):
-	return render(request, 'registration/passwordresetsent.html', context={})
+	filter_kwargs = {
+		'codestr__exact': resetStr,
+		}
+	selection = passwordreset.objects.filter(**filter_kwargs)
+	if len(selection)>0:
+		slot = selection[0]
+		user = User.objects.get(username=slot.username)
+		now = dt.datetime.now()
+		slottime = slot.requesttime
+		slottime = slottime.replace(tzinfo=None)
+		diff = now - slottime
+		diff_seconds = diff.total_seconds()
+		if diff_seconds<(60*60*24):
+			form = SetPasswordForm(user=user)
+			if request.method=='POST':
+				form = SetPasswordForm(data=request.POST, user=user)
+				if form.is_valid():
+					form.save()
+					messages.info(request, f"Your password has been changed.")
+					return redirect('userlogin')
+			context = {'form': form,
+				'resetStr':resetStr,}
+			return render(request, 'registration/resetpassword.html', context)
+	return redirect('userlogin')

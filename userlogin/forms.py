@@ -56,3 +56,8 @@ class passwordReset(forms.ModelForm):
 	class Meta:
 		model = passwordreset
 		fields = ['username']
+
+#class resetPassword(forms.ModelForm):
+#	class Meta:
+#		model = User
+#		fields = ['password1','password2']

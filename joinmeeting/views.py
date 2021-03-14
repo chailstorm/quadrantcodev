@@ -5,6 +5,7 @@ import hashlib
 import hmac
 import base64
 import time
+from django.conf import settings
 
 # Create your views here.
 class joinmeeting():
@@ -15,7 +16,7 @@ class joinmeeting():
 			'meetingNumber': int(mn),
 			'role': 0}
 		signature = joinmeeting.generateSignature(data)
-		join_url = 'http://127.0.0.1:8000/meeting.html/?name='+uname+'&mn='+mn+'&email='+'&pwd='+mp+'&role=0&lang=en-US&signature='+signature+'&china=0&apiKey='+apikey
+		join_url = settings.ADDRESS+'meeting.html/?name='+uname+'&mn='+mn+'&email='+'&pwd='+mp+'&role=0&lang=en-US&signature='+signature+'&china=0&apiKey='+apikey
 		return redirect(join_url)
 	
 	def generateSignature(data):
