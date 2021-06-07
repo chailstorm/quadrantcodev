@@ -23,9 +23,9 @@ SECRET_KEY = env_vars.SECRET_KEY
 
 DEBUG = env_vars.DEBUG
 
-ALLOWED_HOSTS = ['54.167.229.25']
+ALLOWED_HOSTS = ['thequadco.com','www.thequadco.com']
 
-ADDRESS = 'http://54.167.229.25:80/'
+ADDRESS = 'https://thequadco.com/'
 # Application definition
 
 INSTALLED_APPS = [

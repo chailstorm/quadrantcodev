@@ -11,7 +11,7 @@ from .forms import createUserForm
 from .forms import createUserProfile
 from .forms import createQprofile
 from .forms import createQphoto
-#from .forms import passwordReset
+from .forms import passwordReset
 #from .forms import resetPassword
 #from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.forms import SetPasswordForm
