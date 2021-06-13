@@ -214,7 +214,7 @@ class scheduler():
 
 class zoom():
 	conn = http.client.HTTPSConnection("api.zoom.us")
-	host_id = 'A67ct1ExR1WxfiL72rBzCQ'
+	#host_id = 'A67ct1ExR1WxfiL72rBzCQ'
 	
 	def getJWT():
 		header = {'alg': 'HS256', 'typ': 'JWT'}
@@ -230,6 +230,22 @@ class zoom():
 			'content-type': "application/json"
 			}
 		return headers
+	
+	def getUser(email):
+		url = url = "/v2/users/"
+		headers = zoom.genHeaders()
+		zoom.conn.request("GET",url,headers=headers)
+		res = zoom.conn.getresponse()
+		data = res.read()
+		zoom.conn.close()
+		r = data.decode("utf-8")
+		rs = json.loads(r)
+		for ii in range(0,len(rs['users'])):
+			if rs['users'][ii]['email']==email:
+				userId = rs['users'][ii]['id']
+				return userId
+		host_id = 'A67ct1ExR1WxfiL72rBzCQ'
+		return host_id
 	
 	def scheduleMeeting(host_id,start,desc):
 		url = "/v2/users/" + host_id + "/meetings"
@@ -381,8 +397,9 @@ class checkout():
 				time2 = dt.time.strftime(time1.time(), "%H:%M")
 				startstr = str(year)+'-'+str(month)+'-'+str(day)+'T'+time2+':00'
 				try: 
-					
-					rs = zoom.scheduleMeeting(zoom.host_id,startstr,desc)
+					qemail = qinfo.objects.filter(qn=qid)[0].email
+					host_id = zoom.getUser(qemail)
+					rs = zoom.scheduleMeeting(host_id,startstr,desc)
 					rs_id = rs['id']
 					rs_url = rs['join_url']
 					rs_pass = rs['password']
